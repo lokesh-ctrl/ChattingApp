@@ -1,8 +1,8 @@
 import * as firebase from 'firebase';
-import firebaseConfig from '../configs/firebase';
+import firebaseConfiguration from '../configs/firebase';
 
 try {
-    firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfiguration);
 } catch (e) {
     if (!/already exists/.test(e.message))
         console.log("firebase intialization error " + e.stackTrace);

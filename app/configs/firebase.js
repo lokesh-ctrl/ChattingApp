@@ -1,4 +1,4 @@
-export var firebaseConfig = {
+const firebaseConfiguration = {
     apiKey: "AIzaSyD446TZPrkX7O_7l9c3jVquUomtGLAccgw",
     authDomain: "chatapp-a3043.firebaseapp.com",
     databaseURL: "https://chatapp-a3043.firebaseio.com",
@@ -6,3 +6,4 @@ export var firebaseConfig = {
     storageBucket: "chatapp-a3043.appspot.com",
     messagingSenderId: "1067444323722"
 };
+export default firebaseConfiguration
