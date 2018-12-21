@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import chat from './chat/reducer'
+import chat from './chat/Reducer'
 
 const RootReducer = combineReducers({
     chat
