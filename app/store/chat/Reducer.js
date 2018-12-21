@@ -1,4 +1,4 @@
-import * as types from './actionTypes'
+import * as types from './ActionTypes'
 
 const initialState = {
     sending: false,
@@ -12,6 +12,8 @@ const chat = (state = initialState, action) => {
             return {...state, sending: true}
         case types.SENT_MESSAGE_SUCCESS:
             return {...state, sending: false, message: ''}
+        case types.SENT_MESSAGE_UPDATE:
+            return{...state,sending:false,message:action.text}
         default:
             return state
     }
