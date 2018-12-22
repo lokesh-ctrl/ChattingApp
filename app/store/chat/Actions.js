@@ -5,7 +5,6 @@ const FIREBASE_REF_MESSAGES = firebaseService.database().ref('Messages')
 
 export const sendMessage = message => {
     return (dispatch) => {
-        console.log("in send message")
         let createdAt = new Date().getTime()
         let chatMessage = {
             text: message,

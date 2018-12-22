@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
-import reducer from './RootReducer'
+import RootReducer from './RootReducer'
 
 const configureStore = () => {
     const middleware = [thunk]
-    return createStore(reducer, applyMiddleware(...middleware))
+    return createStore(RootReducer, applyMiddleware(...middleware))
 }
 
 export {configureStore}
