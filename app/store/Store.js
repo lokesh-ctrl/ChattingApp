@@ -1,11 +1,13 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware ,compose} from 'redux'
 import thunk from 'redux-thunk'
-
+import devToolsEnhancer from 'remote-redux-devtools';
 import RootReducer from './RootReducer'
+import { composeWithDevTools } from 'remote-redux-devtools';
+
 
 const configureStore = () => {
     const middleware = [thunk]
-    return createStore(RootReducer, applyMiddleware(...middleware))
+    return createStore(RootReducer, composeWithDevTools(applyMiddleware(...middleware)))
 }
 
-export {configureStore}
+export default configureStore
