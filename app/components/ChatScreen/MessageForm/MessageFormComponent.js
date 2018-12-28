@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 
 
 class MessageFormComponent extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleButtonPress = () => {
             this.props.sendMessage(this.props.message)
         }
