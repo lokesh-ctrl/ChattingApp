@@ -3,7 +3,7 @@ import {Provider} from 'react-redux'
 import configureStore from './app/store/Store'
 import RootReducer from './app/store/RootReducer'
 import ChatAppContainer from './app/components/ChatApp/ChatAppContainer'
-import 'core-js'
+
 
 const store = configureStore(RootReducer)
 if(process.env.NODE_ENV !== 'production') {
