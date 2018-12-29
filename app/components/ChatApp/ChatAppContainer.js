@@ -1,19 +1,15 @@
-import {saveLocalContacts} from './../../store/user/Actions'
 import React from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import ChatAppComponent from './ChatAppComponent'
 
 const ChatAppContainer = props =>
-    <ChatAppComponent saveLocalContacts={props.saveLocalContacts} />
+    <ChatAppComponent/>
 
-const mapDispatchToProps = {
-    saveLocalContacts
+const mapStateToProps = state => {
+    return {}
 }
 
-ChatAppContainer.propTypes = {
-    saveLocalContacts: PropTypes.func.isRequired,
-    localContacts: PropTypes.array.isRequired
-}
+const mapDispatchToProps = {}
 
-export default connect(mapDispatchToProps)(ChatAppContainer)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatAppContainer)
