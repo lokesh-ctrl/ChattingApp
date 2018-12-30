@@ -1,7 +1,7 @@
 import React from 'react'
-import {PermissionsAndroid, View} from 'react-native'
-import MessageFormContainer from './MessageForm/MessageFormContainer'
+import {PermissionsAndroid} from 'react-native'
 import Contacts from "react-native-contacts";
+import ChatHomeContainer from './ChatHome/ChatHomeContainer'
 
 class ChatScreenComponent extends React.Component {
     constructor(props) {
@@ -11,22 +11,19 @@ class ChatScreenComponent extends React.Component {
         })
         this.requestContactsPermission = this.requestContactsPermission.bind(this)
         this.getContacts = () => {
-            console.log("getContacts was triggered")
             Contacts.getAll((err, contacts) => {
                 if (err) throw err;
-                console.log("We got some contacts!")
-                console.log(contacts)
                 this.props.saveLocalContacts(contacts)
             });
         }
     }
+
     componentDidMount() {
         this.requestContactsPermission().then(this.getContacts)
     }
 
     async requestContactsPermission() {
-        console.log("requesting permission")
-        const granted =  await PermissionsAndroid.request(
+        const granted = await PermissionsAndroid.request(
             PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
             {
                 title: 'ChatApp contacts permission',
@@ -38,9 +35,7 @@ class ChatScreenComponent extends React.Component {
 
     render() {
         return (
-            <View>
-                <MessageFormContainer/>
-            </View>
+            <ChatHomeContainer/>
         )
     }
 

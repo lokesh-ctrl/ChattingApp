@@ -1,7 +1,7 @@
 import * as types from './ActionTypes'
 
 const initialState = {
-    localContacts: [],
+    localContacts: null,
     user: null,
     isRegistered: false,
     firebaseContacts: null,

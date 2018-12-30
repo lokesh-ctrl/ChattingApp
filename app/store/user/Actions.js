@@ -4,7 +4,6 @@ import firebaseService from "../../services/FirebaseService";
 const FIREBASE_REF_USERS = firebaseService.database().ref('Users')
 
 export const saveLocalContacts = contacts => {
-    console.log("save local contacts was triggered")
     return (dispatch) => {
         dispatch(saveContactsInStore(contacts))
     }
