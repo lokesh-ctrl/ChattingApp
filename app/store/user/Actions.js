@@ -16,13 +16,17 @@ export const registerUser = userInformation => {
             phoneNumber: userInformation.phoneNumber,
             deviceId: userInformation.deviceId
         }
-        FIREBASE_REF_USERS.push(userInfo, (error) => {
-            if (!error) {
-                console.log("Error registering")
-            } else {
-                console.log("Registered successfully")
-                dispatch(saveUserInfoInStore(userInfo))
+        FIREBASE_REF_USERS.once("value", function (data) {
+            if (data == null) {
+                FIREBASE_REF_USERS.push(userInfo, (error) => {
+                    if (!error) {
+                        console.log("Error registering")
+                    } else {
+                        console.log("Registered successfully")
+                    }
+                })
             }
+            dispatch(saveUserInfoInStore(userInfo))
         })
     }
 }

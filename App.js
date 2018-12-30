@@ -12,9 +12,6 @@ if(process.env.NODE_ENV !== 'production') {
 
 const App = () => (
     <Provider store={store}>
-        {store.subscribe(()=>{
-            console.log("state is"+store.getState() )
-        })}
         <ChatAppContainer/>
     </Provider>)
 

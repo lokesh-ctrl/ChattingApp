@@ -3,10 +3,12 @@ import {connect} from 'react-redux'
 import ChatAppComponent from './ChatAppComponent'
 
 const ChatAppContainer = props =>
-    <ChatAppComponent/>
+    <ChatAppComponent isRegistered={props.isRegistered}/>
 
 const mapStateToProps = state => {
-    return {}
+    return {
+        isRegistered: state.user.isRegistered
+    }
 }
 
 const mapDispatchToProps = {}

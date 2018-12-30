@@ -1,18 +1,17 @@
 package com.chatapp;
 
 import android.app.Application;
-import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
-import com.rt2zz.reactnativecontacts.ReactNativeContacts;
-import eu.sigrlami.rnsimdata.RNSimDataReactPackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.soloader.SoLoader;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import eu.sigrlami.rnsimdata.RNSimDataReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+              new RNGestureHandlerPackage(),
             new ReactNativeContacts(),
             new RNSimDataReactPackage(),
             new RNDeviceInfo(),

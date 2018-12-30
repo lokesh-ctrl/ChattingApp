@@ -5,9 +5,11 @@ import {registerUser} from "../../store/user/Actions";
 import LoginScreenComponent from './LoginScreenComponent'
 
 const LoginScreenContainer = props =>
-    <LoginScreenComponent registerUser={registerUser}/>
+    <LoginScreenComponent registerUser={props.registerUser}/>
 
-
+const mapStateToProps = () => {
+    return {}
+}
 const mapDispatchToProps = {
     registerUser
 }
@@ -16,4 +18,4 @@ LoginScreenContainer.propTypes = {
     registerUser: PropTypes.func.isRequired,
 }
 
-export default connect(mapDispatchToProps)(LoginScreenContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreenContainer)

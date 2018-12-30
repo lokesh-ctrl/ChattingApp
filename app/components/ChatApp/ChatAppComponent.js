@@ -1,15 +1,24 @@
 import React from 'react'
-import {View} from 'react-native';
-import ChatScreenContainer from "../ChatScreen/ChatScreenContainer";
-
+import ChatScreenContainer from './../ChatScreen/ChatScreenContainer'
+import LoginScreenContainer from './../LoginScreen/LoginScreenContainer'
 
 class ChatAppComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.navigate = this.navigate.bind(this)
+    }
+
+    navigate(isRegistered) {
+        if (isRegistered) {
+            return <ChatScreenContainer/>
+        } else {
+            return <LoginScreenContainer/>
+        }
+    }
     render() {
         return (
-            <View>
-                <ChatScreenContainer/>
-            </View>)
+            this.navigate(this.props.isRegistered)
+        )
     }
 }
-
 export default ChatAppComponent
