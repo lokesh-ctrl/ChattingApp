@@ -11,26 +11,42 @@ export const saveLocalContacts = contacts => {
 }
 
 export const registerUser = userInformation => {
-    return(dispatch)=>{
+    return (dispatch) => {
         let userInfo = {
             phoneNumber: userInformation.phoneNumber,
-            deviceId:userInformation.deviceId
+            deviceId: userInformation.deviceId
         }
-        FIREBASE_REF_USERS.push(userInfo,(error)=>{
-            if (!error){
+        FIREBASE_REF_USERS.push(userInfo, (error) => {
+            if (!error) {
                 console.log("Error registering")
-            }
-            else {
+            } else {
                 console.log("Registered successfully")
                 dispatch(saveUserInfoInStore(userInfo))
             }
         })
     }
 }
+export const loadRegisteredContactsInFirebase = () => {
+    return (dispatch) => {
+        FIREBASE_REF_USERS.on('value', (snapshot) => {
+            dispatch(loadContactsSuccess(snapshot.val()))
+        }, (error) => {
+            dispatch(loadContactsFailure(error.message))
+        })
+    }
+}
 
+const loadContactsSuccess = contacts => ({
+    type: types.LOAD_CONTACTS_FROM_FIREBASE_SUCCESS,
+    contacts
+})
+const loadContactsFailure = message => ({
+    type: types.LOAD_CONTACTS_FROM_FIREBASE_FAILED,
+    message
+})
 const saveUserInfoInStore = userInformation => ({
     type: types.SAVE_USER_INFO_IN_STORE,
-        userInformation
+    userInformation
 })
 
 const saveContactsInStore = contacts => ({
