@@ -5,7 +5,8 @@ const initialState = {
     user: null,
     isRegistered: false,
     firebaseContacts: null,
-    errorLoadingContacts: false
+    errorLoadingContacts: false,
+    currentChatUser: null,
 };
 
 const user = (state = initialState, action) => {
@@ -18,6 +19,10 @@ const user = (state = initialState, action) => {
             return {...state, firebaseContacts: action.contacts}
         case types.LOAD_CONTACTS_FROM_FIREBASE_FAILED:
             return {...state, errorLoadingContacts: true}
+        case types.SAVE_CURRENT_CHAT_CONTACT:
+            return {...state, currentChatUser: action.contact}
+        case types.REMOVE_CURRENT_CHAT_CONTACT:
+            return {...state, currentChatUser: null}
         default:
             return state
     }

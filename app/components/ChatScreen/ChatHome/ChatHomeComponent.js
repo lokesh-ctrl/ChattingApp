@@ -47,7 +47,7 @@ class ChatHomeComponent extends Component {
     renderItem = ({item}) => {
         return (
             <View style={styles.row}>
-                <TouchableOpacity style={styles.rowText} onPress={console.log(item)}>
+                <TouchableOpacity style={styles.rowText} onPress={console.log("on press")}>
                     <Text style={styles.sender}>{item.givenName}</Text>
                 </TouchableOpacity>
             </View>
