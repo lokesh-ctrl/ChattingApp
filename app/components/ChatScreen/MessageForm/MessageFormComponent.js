@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {TextInput, TouchableOpacity, View,Button} from 'react-native'
+import {Button, TextInput, View} from 'react-native'
 import PropTypes from 'prop-types'
 
 
@@ -7,7 +7,7 @@ class MessageFormComponent extends Component {
     constructor(props) {
         super(props);
         this.handleButtonPress = () => {
-            this.props.sendMessage(this.props.message)
+            this.props.sendMessage(this.props.message, this.props.senderNumber, this.props.receiverNumber)
         }
         this.handleMessageChange = (message) => {
             this.props.updateMessage(message)

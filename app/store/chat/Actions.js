@@ -1,7 +1,7 @@
 import * as types from './ActionTypes'
 import firebaseService from '../../services/FirebaseService'
 
-const FIREBASE_DATABASE = firebaseService.database()
+const FIREBASE_DATABASE = firebaseService.database();
 
 export const sendMessage = (messageBody, senderNumber, receiverNumber) => {
     return (dispatch) => {
@@ -9,7 +9,9 @@ export const sendMessage = (messageBody, senderNumber, receiverNumber) => {
         let chatMessage = {
             text: messageBody,
             createdAt: createdAt,
-        }
+            sender: senderNumber,
+            receiver: receiverNumber
+        };
         let conversationKey = '';
         if (senderNumber > receiverNumber) {
             conversationKey = 'Conversations/' + receiverNumber + senderNumber;
@@ -17,6 +19,7 @@ export const sendMessage = (messageBody, senderNumber, receiverNumber) => {
         let FIREBASE_CURRENT_CONVERSATION_REFERENCE = FIREBASE_DATABASE.ref(conversationKey)
         FIREBASE_CURRENT_CONVERSATION_REFERENCE.push(chatMessage, (error) => {
             if (!error) {
+                console.log("message sent successfully")
                 dispatch(chatMessageSuccess())
             } else {
                 console.log(error)
