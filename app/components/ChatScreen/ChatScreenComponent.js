@@ -2,6 +2,7 @@ import React from 'react'
 import {PermissionsAndroid} from 'react-native'
 import Contacts from "react-native-contacts";
 import ChatHomeContainer from './ChatHome/ChatHomeContainer'
+import MessageFormContainer from './MessageForm/MessageFormContainer'
 
 class ChatScreenComponent extends React.Component {
     constructor(props) {
@@ -33,9 +34,17 @@ class ChatScreenComponent extends React.Component {
         return granted === PermissionsAndroid.RESULTS.GRANTED
     }
 
+    renderBasedOnState(currentChatUser) {
+        if (currentChatUser) {
+            return (<ChatHomeContainer/>)
+        } else {
+            <MessageFormContainer/>
+        }
+    }
+
     render() {
         return (
-            <ChatHomeContainer/>
+            this.renderBasedOnState(this.props.currentChatUser)
         )
     }
 
