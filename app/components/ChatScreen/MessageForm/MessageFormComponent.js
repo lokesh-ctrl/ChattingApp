@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {Platform,Text,View,Image,StyleSheet,FlatList,TextInput,KeyboardAvoidingView,TouchableOpacity} from 'react-native';
+import {FlatList, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
-import {Header,SafeAreaView} from 'react-navigation';
+import {Header, SafeAreaView} from 'react-navigation';
 
 
 class MessageFormComponent extends Component {
@@ -11,7 +11,7 @@ class MessageFormComponent extends Component {
             messages: []
         };
         this.handleButtonPress = () => {
-            this.props.sendMessage(this.props.message)
+            this.props.sendMessage(this.props.message, this.props.senderNumber, this.props.receiverNumber)
         }
         this.handleMessageChange = (message) => {
             message => this.setState({typing: message})
