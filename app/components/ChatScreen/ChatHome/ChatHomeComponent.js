@@ -19,7 +19,7 @@ class ChatHomeComponent extends Component {
     onChatPress = (item) => {
         console.log(item.phoneNumbers[0].number)
         console.log(item.givenName)
-        this.props.chatWithThisUser(item)
+        this.props.currentChatUser(item)
     }
     renderItem = ({item}) => {
         return (
@@ -41,6 +41,7 @@ class ChatHomeComponent extends Component {
                     renderItem={(item) => this.renderItem(item)}
                     keyExtractor={(item, index) => index.toString()}
                 />
+                <Text>I'm here</Text>
             </View>
         );
     }
@@ -48,18 +49,18 @@ class ChatHomeComponent extends Component {
 
 export default ChatHomeComponent;
 
-
+//
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
+        // flex: 1,
+        // backgroundColor: '#fff',
     },
     row: {
-        padding: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: '#eee',
+        // padding: 20,
+        // borderBottomWidth: 1,
+        // borderBottomColor: '#eee',
     },
     rowText: {
-        flex: 1,
+        // flex: 1,
     },
 });

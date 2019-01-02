@@ -23,8 +23,8 @@ export const registerUser = userInformation => {
                     console.log("Registered successfully")
                 }
             });
-            dispatch(saveUserInfoInStore(userInfo))
         })
+        dispatch(saveUserInfoInStore(userInfo))
     }
 };
 export const loadRegisteredContactsInFirebase = () => {
