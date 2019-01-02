@@ -44,8 +44,10 @@ export const loadRegisteredContactsInFirebase = () => {
 };
 export const chatWithThisUser = contact => {
     return (dispatch) => {
+        let chatUserPhoneNumber = '' + contact.phoneNumbers[0].number;
+        let trimmedPhoneNumber = chatUserPhoneNumber.replace(/[^a-zA-Z0-9]/g, '');
         let chatContact = {
-            phoneNumber: contact.phoneNumbers[0].number,
+            phoneNumber: trimmedPhoneNumber,
             name: contact.givenName
         }
         console.log(chatContact)
