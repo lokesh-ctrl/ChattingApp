@@ -17,7 +17,7 @@ export const registerUser = userInformation => {
         FIREBASE_REF_USERS.once("value", function (data) {
             console.log(data);
             FIREBASE_REF_USERS.push(userInfo, (error) => {
-                if (!error) {
+                if (error) {
                     console.log("Error registering")
                 } else {
                     console.log("Registered successfully")
@@ -36,7 +36,7 @@ export const loadRegisteredContactsInFirebase = () => {
                 contact['.key'] = childSnapshot.key;
                 contacts.push(contact)
             });
-            dispatch(loadContactsSuccess(contacts);
+            dispatch(loadContactsSuccess(contacts))
         }, (error) => {
             dispatch(loadContactsFailure(error.message))
         })

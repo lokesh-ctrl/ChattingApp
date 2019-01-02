@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {CHAT_LOAD_MESSAGES} from "../../../store/chat/ActionTypes";
 
 class ChatHomeComponent extends Component {
     constructor(props) {
@@ -7,47 +8,25 @@ class ChatHomeComponent extends Component {
         this.state = ({
             contacts: [],
         })
-        this.renderList = this.renderList.bind(this)
+        this.onChatPress = this.onChatPress.bind(this);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
         let newProps = nextProps;
-        this.setState({contacts: newProps})
+        this.setState({contacts: newProps});
     }
 
-    static navigationOptions = ({navigation}) => {
-        return (
-            {
-                headerTitle: "P2PApp",
-                headerBackTitle: "Back"
-            }
-        );
-    };
-
-    renderList(contacts) {
-        if (contacts.length !== 0) {
-            console.log("in if")
-            console.log(contacts["contacts"]);
-            const contactList = contacts["contacts"].map(contact =>
-                <View>
-                    <Text>Name:{contact.givenName} </Text>
-                    <Text>Ph NO: {contact.phoneNumber[0].number}</Text>
-                </View>
-            )
-            return (
-                <View>
-                    {contactList}
-                </View>
-            );
-        } else {
-            return (<View/>)
-        }
+    onChatPress = (item) => {
+        console.log(item.phoneNumbers[0].number)
+        console.log(item.givenName)
+        this.props.chatWithThisUser(item)
     }
-
     renderItem = ({item}) => {
         return (
             <View style={styles.row}>
-                <TouchableOpacity style={styles.rowText} onPress={console.log("on press")}>
+                <TouchableOpacity style={styles.rowText} onPress={() => {
+                    this.onChatPress(item)
+                }}>
                     <Text style={styles.sender}>{item.givenName}</Text>
                 </TouchableOpacity>
             </View>
@@ -62,9 +41,6 @@ class ChatHomeComponent extends Component {
                     renderItem={(item) => this.renderItem(item)}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                {/*{console.log("in render")}*/}
-                {/*{console.log(this.state.contacts)}*/}
-                {/*{this.renderList(this.state.contacts)}*/}
             </View>
         );
     }

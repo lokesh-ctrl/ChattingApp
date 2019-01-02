@@ -1,25 +1,29 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {sendMessage, updateMessage} from "../../../store/chat/Actions";
+import {loadMessagesRelatedToChatUser, sendMessage, updateMessage} from "../../../store/chat/Actions";
 import MessageFormComponent from "./MessageFormComponent"
 
 const MessageFormContainer = props =>
     <MessageFormComponent updateMessage={props.updateMessage} senderNumber={props.senderNumber}
-                          sendMessage={props.sendMessage} message={props.message}
-                          receiverNumber={props.receiverNumber}/>
+                          sendMessage={props.sendMessage} message={props.sendingMessage}
+                          receiverNumber={props.receiverNumber}
+                          loadMessagesRelatedToChatUser={props.loadMessagesRelatedToChatUser}
+                          messages={props.messages}/>
 
 const mapStateToProps = state => {
     return {
-        message: state.chat.message,
+        sendingMessage: state.chat.message,
         senderNumber: state.user.user.phoneNumber,
-        receiverNumber: state.user.currentChatUser.phoneNumber
+        receiverNumber: state.user.currentChatUser.phoneNumber,
+        messages: state.chat.messages
     }
 }
 
 const mapDispatchToProps = {
     sendMessage,
-    updateMessage
+    updateMessage,
+    loadMessagesRelatedToChatUser
 }
 
 MessageFormContainer.propTypes = {

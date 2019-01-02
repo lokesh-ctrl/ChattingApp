@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {TextInput, TouchableOpacity, View, Button} from 'react-native'
+import {Button, TextInput, View} from 'react-native'
 import PropTypes from 'prop-types'
 import DeviceInfo from 'react-native-device-info'
 
@@ -7,8 +7,8 @@ class LoginScreenComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            phoneNumber: '',
-            deviceId: ''
+            phoneNumber: null,
+            deviceId: null
         }
         this.handleButtonPress = () => {
             let userInfo = {
@@ -23,7 +23,10 @@ class LoginScreenComponent extends Component {
     }
 
     componentDidMount() {
-        this.setState({deviceId: DeviceInfo.getDeviceId})
+        let deviceId = DeviceInfo.getUniqueID();
+        this.setState({deviceId: deviceId});
+        console.log(deviceId);
+        console.log("diviceInfo" + this.state.deviceId);
     }
 
     render() {

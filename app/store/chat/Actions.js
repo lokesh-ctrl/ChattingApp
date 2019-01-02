@@ -11,7 +11,7 @@ export const sendMessage = (messageBody, senderNumber, receiverNumber) => {
             text: messageBody,
             createdAt: createdAt,
             sender: senderNumber,
-            receiver: receiverNumber
+            receiver: receiverNumber,
             id: 1,
         };
         let chatMessageForReceiver = {
