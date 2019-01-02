@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {TextInput, TouchableOpacity, View} from 'react-native'
-import PropTypes from 'prop-types'
+import {Platform,Text,View,Image,StyleSheet,FlatList,TextInput,KeyboardAvoidingView,TouchableOpacity} from 'react-native';
+import PropTypes from 'prop-types';
+import {Header,SafeAreaView} from 'react-navigation';
 
 
 class MessageFormComponent extends Component {
@@ -15,7 +16,7 @@ class MessageFormComponent extends Component {
         this.handleMessageChange = (message) => {
             message => this.setState({typing: message})
             this.props.updateMessage(message)
-        }
+        };
     }
 
     componentDidMount() {
@@ -33,8 +34,9 @@ class MessageFormComponent extends Component {
         );
     };
 
-    render() {
-        return (<View style={styles.container}>
+    renderFlatList(){
+        return(
+            <View>
                 <FlatList
                     data={this.state.messages}
                     renderItem={this.renderItem}
@@ -44,27 +46,37 @@ class MessageFormComponent extends Component {
                     onContentSizeChange={() => this.flatList.scrollToEnd({animated: false})}
                     onLayout={() => this.flatList.scrollToEnd({animated: true})}
                 />
-                <KeyboardAvoidingView
-                    keyboardVerticalOffset={keyboardVerticalOffset}
-                    behavior={padding}
-                >
-                    <SafeAreaView forceInset={{bottom: 'never'}}>
-                        <View style={styles.footer}>
-                            <TextInput
-                                value={this.props.message}
-                                onChangeText={this.handleMessageChange}
-                                style={styles.input}
-                                underlineColorAndroid="transparent"
-                                placeholder="Type something nice"
-                            />
-                            <TouchableOpacity onPress={this.handleButtonPress}>
-                                <Text style={styles.send}>Send</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </SafeAreaView>
-                </KeyboardAvoidingView>
             </View>
-        )
+        );
+    }
+    render() {
+        const keyboardVerticalOffset = Platform.OS === 'ios' ? Header.HEIGHT + 20 : 0;
+        const padding = Platform.OS === 'ios' ? "padding" : '';
+            if(this.state.messages) {
+                this.renderFlatList();
+            }
+            return(
+                <View>
+                    <KeyboardAvoidingView
+                        keyboardVerticalOffset={keyboardVerticalOffset}
+                        behavior={padding}
+                    >
+                        <SafeAreaView forceInset={{bottom: 'never'}}>
+                            <View>
+                                <TextInput
+                                    value={this.props.message}
+                                    onChangeText={this.handleMessageChange}
+                                    underlineColorAndroid="transparent"
+                                    placeholder="Type something nice"
+                                />
+                                <TouchableOpacity onPress={this.handleButtonPress}>
+                                    <Text>Send</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </SafeAreaView>
+                    </KeyboardAvoidingView>
+                </View>
+            )
     }
 }
 MessageFormComponent.propTypes = {
@@ -72,4 +84,5 @@ MessageFormComponent.propTypes = {
     message: PropTypes.string.isRequired,
     updateMessage:PropTypes.func.isRequired
 }
-export default MessageFormComponent
+export default MessageFormComponent;
+
