@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import styles from "../../../Styles/styleSheet";
 import {CHAT_LOAD_MESSAGES} from "../../../store/chat/ActionTypes";
 
 class ChatHomeComponent extends Component {
@@ -12,8 +13,7 @@ class ChatHomeComponent extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        let newProps = nextProps;
-        this.setState({contacts: newProps});
+        this.setState({contacts: nextProps});
     }
 
     onChatPress = (item) => {
@@ -23,44 +23,25 @@ class ChatHomeComponent extends Component {
     }
     renderItem = ({item}) => {
         return (
-            <View style={styles.row}>
-                <TouchableOpacity style={styles.rowText} onPress={() => {
+                <TouchableOpacity style={styles.separator} onPress={() => {
                     this.onChatPress(item)
                 }}>
-                    <Text style={styles.sender}>{item.givenName}</Text>
+                    <Text style={styles.item}>{item.givenName}</Text>
                 </TouchableOpacity>
-            </View>
         );
     };
 
     render() {
         return (
-            <View style={styles.container}>
+            <View>
                 <FlatList
                     data={this.state.contacts["contacts"]}
                     renderItem={(item) => this.renderItem(item)}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                <Text>I'm here</Text>
             </View>
         );
     }
 }
 
 export default ChatHomeComponent;
-
-//
-const styles = StyleSheet.create({
-    container: {
-        // flex: 1,
-        // backgroundColor: '#fff',
-    },
-    row: {
-        // padding: 20,
-        // borderBottomWidth: 1,
-        // borderBottomColor: '#eee',
-    },
-    rowText: {
-        // flex: 1,
-    },
-});
