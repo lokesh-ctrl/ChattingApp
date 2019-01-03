@@ -6,14 +6,14 @@ import MessageFormComponent from "./MessageFormComponent"
 
 const MessageFormContainer = props =>
     <MessageFormComponent updateMessage={props.updateMessage} senderNumber={props.senderNumber}
-                          sendMessage={props.sendMessage} message={props.sendingMessage}
+                          sendMessage={props.sendMessage} message={props.message}
                           receiverNumber={props.receiverNumber}
                           loadMessagesRelatedToChatUser={props.loadMessagesRelatedToChatUser}
                           messages={props.messages}/>
 
 const mapStateToProps = state => {
     return {
-        sendingMessage: state.chat.message,
+        message: state.chat.message,
         senderNumber: state.user.user.phoneNumber,
         receiverNumber: state.user.currentChatUser.phoneNumber,
         messages: state.chat.messages

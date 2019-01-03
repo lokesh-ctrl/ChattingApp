@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {FlatList, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {Header, SafeAreaView} from 'react-navigation';
-
+import firebaseService from '../../../services/FirebaseService'
 
 class MessageFormComponent extends Component {
     constructor(props) {
@@ -10,18 +10,28 @@ class MessageFormComponent extends Component {
         this.state = {
             messages: []
         };
+        let that = this;
+        let conversationKey = 'Users/' + this.props.senderNumber + '/' + 'Conversations/' + this.props.receiverNumber;
+        let firebaseRef = firebaseService.database().ref(conversationKey);
+        firebaseRef.on("value", function (dataSnapshot) {
+            let messages = []
+            dataSnapshot.forEach(function (child) {
+                let message = child.val()
+                console.log(message)
+                messages.push(message)
+            })
+            that.setState({messages: messages})
+            console.log(that.state.messages)
+        });
         this.handleButtonPress = () => {
             this.props.sendMessage(this.props.message, this.props.senderNumber, this.props.receiverNumber)
-        }
+        };
         this.handleMessageChange = (message) => {
             message => this.setState({typing: message})
             this.props.updateMessage(message)
         };
     }
 
-    componentDidMount() {
-        this.setState({messages: this.props.messages});
-    }
 
     renderItem({item}) {
         return (
@@ -34,8 +44,8 @@ class MessageFormComponent extends Component {
         );
     };
 
-    renderFlatList(){
-        return(
+    renderFlatList() {
+        return (
             <View>
                 <FlatList
                     data={this.state.messages}
@@ -82,7 +92,7 @@ class MessageFormComponent extends Component {
 MessageFormComponent.propTypes = {
     sendMessage: PropTypes.func.isRequired,
     message: PropTypes.string.isRequired,
-    updateMessage:PropTypes.func.isRequired
+    updateMessage: PropTypes.func.isRequired
 }
 export default MessageFormComponent;
 
