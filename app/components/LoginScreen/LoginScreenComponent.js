@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
-import {Button, TextInput, View} from 'react-native'
+import {Button, TextInput, View, StyleSheet, Text} from 'react-native'
 import PropTypes from 'prop-types'
 import DeviceInfo from 'react-native-device-info'
+import styles from "../../Styles/styleSheet";
+import Header from "../Header";
 
 class LoginScreenComponent extends Component {
     constructor(props) {
@@ -31,11 +33,20 @@ class LoginScreenComponent extends Component {
 
     render() {
         return (
-            <View>
-                <TextInput onChangeText={this.handleTextChange}
-                           value={this.state.phoneNumber}
-                />
-                <Button title={"next"} onPress={this.handleButtonPress}/>
+            <View style={styles.mainContainer}>
+                <Header title={'Chat App'}/>
+                <View style={styles.Box}>
+                    <TextInput onChangeText={this.handleTextChange}
+                               value={this.state.phoneNumber}
+                               placeholder="Enter your phone number"
+                               keyboardType='numeric'
+                               style={styles.inputBox}
+                               maxLength={10}
+                    />
+                    <View>
+                        <Button style={styles.button} title={"next"} onPress={this.handleButtonPress}/>
+                    </View>
+                </View>
             </View>
         )
     }
@@ -44,4 +55,4 @@ class LoginScreenComponent extends Component {
 LoginScreenComponent.propTypes = {
     registerUser: PropTypes.func.isRequired
 }
-export default LoginScreenComponent
+export default LoginScreenComponent;
