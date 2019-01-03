@@ -13,11 +13,16 @@ class LoginScreenComponent extends Component {
             deviceId: null
         }
         this.handleButtonPress = () => {
-            let userInfo = {
-                phoneNumber: this.state.phoneNumber,
-                deviceId: this.state.deviceId
+            if(this.state.phoneNumber && this.state.phoneNumber.length===10){
+                let userInfo = {
+                    phoneNumber: this.state.phoneNumber,
+                    deviceId: this.state.deviceId
+                }
+                this.props.registerUser(userInfo)
             }
-            this.props.registerUser(userInfo)
+            else{
+                alert("Enter Proper Phone Number");
+            }
         }
         this.handleTextChange = (phoneNumber) => {
             this.setState({phoneNumber: phoneNumber})
