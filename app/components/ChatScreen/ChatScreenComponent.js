@@ -2,6 +2,7 @@ import React from 'react'
 import {PermissionsAndroid, View} from 'react-native'
 import Contacts from "react-native-contacts";
 import ChatHomeContainer from './ChatHome/ChatHomeContainer'
+import Header from "../Header";
 import MessageFormContainer from './MessageForm/MessageFormContainer'
 
 class ChatScreenComponent extends React.Component {
@@ -52,6 +53,7 @@ class ChatScreenComponent extends React.Component {
     render() {
         return (
             <View>
+                <Header title={'SOLLU APP'}/>
                 {this.renderBasedOnState(this.props.currentChatUser)}
             </View>
         )

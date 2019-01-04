@@ -15,7 +15,7 @@ export const registerUser = userInformation => {
             deviceId: userInformation.deviceId
         };
         FIREBASE_REF_USERS.once("value", function (data) {
-            console.log(data);
+            // console.log(data);
             FIREBASE_REF_USERS.push(userInfo, (error) => {
                 if (error) {
                     console.log("Error registering")

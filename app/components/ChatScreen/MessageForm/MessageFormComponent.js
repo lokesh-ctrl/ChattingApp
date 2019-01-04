@@ -19,11 +19,9 @@ class MessageFormComponent extends Component {
             let messages = []
             dataSnapshot.forEach(function (child) {
                 let message = child.val()
-                console.log(message)
                 messages.push(message)
             })
             that.setState({messages: messages})
-            console.log(that.state.messages)
         });
         this.handleButtonPress = () => {
             this.props.sendMessage(this.props.message, this.props.senderNumber, this.props.receiverNumber)
@@ -41,7 +39,7 @@ class MessageFormComponent extends Component {
     renderItem({item}) {
         let messageboxstyle;
         let messagetextstyle;
-        if(item._id === 1) {
+        if (item.id === 1) {
             messageboxstyle = styles.senderMessageContainer;
             messagetextstyle = styles.senderMessage;
         }else {
@@ -58,29 +56,31 @@ class MessageFormComponent extends Component {
     };
 
     renderFlatList() {
-        return (
-            <View style={styles.container}>
-                <FlatList
-                    data={this.state.messages}
-                    renderItem={this.renderItem}
-                    extraData={this.state}
-                    keyExtractor={(item, index) => index.toString()}
-                    ref={ref => this.flatList = ref}
-                    onContentSizeChange={() => this.flatList.scrollToEnd({animated: false})}
-                    onLayout={() => this.flatList.scrollToEnd({animated: true})}
-                />
-            </View>
-        );
+        if (this.state.messages.length > 0) {
+            return (
+                <View>
+                    <FlatList
+                        data={this.state.messages}
+                        renderItem={this.renderItem}
+                        keyExtractor={(item, index) => index.toString()}
+                        ref={ref => this.flatList = ref}
+                        onContentSizeChange={() => this.flatList.scrollToEnd({animated: false})}
+                        onLayout={() => this.flatList.scrollToEnd({animated: true})}
+                    />
+                </View>
+            );
+        }
     }
 
     render() {
         const keyboardVerticalOffset = Platform.OS === 'ios' ? Header.HEIGHT + 20 : 0;
         const padding = Platform.OS === 'ios' ? "padding" : '';
-        if(this.state.messages) {
-            this.renderFlatList();
-        }
-        return(
-            <View >
+
+        return (
+            <View>
+                <View>
+                    {this.renderFlatList()}
+                </View>
                 <KeyboardAvoidingView
                     keyboardVerticalOffset={keyboardVerticalOffset}
                     behavior={padding}
@@ -104,10 +104,11 @@ class MessageFormComponent extends Component {
         )
     }
 }
+
 MessageFormComponent.propTypes = {
     sendMessage: PropTypes.func.isRequired,
     message: PropTypes.string.isRequired,
-    updateMessage:PropTypes.func.isRequired
+    updateMessage: PropTypes.func.isRequired
 }
 export default MessageFormComponent;
 
