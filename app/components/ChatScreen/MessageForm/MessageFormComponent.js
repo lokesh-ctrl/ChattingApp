@@ -66,7 +66,7 @@ class MessageFormComponent extends Component {
             this.renderFlatList();
         }
         return(
-            <View style={styles.container}>
+            <View >
                 <KeyboardAvoidingView
                     keyboardVerticalOffset={keyboardVerticalOffset}
                     behavior={padding}
