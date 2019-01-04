@@ -39,18 +39,16 @@ class MessageFormComponent extends Component {
     renderItem({item}) {
         let messageboxstyle;
         let messagetextstyle;
-        if (item.id === 1) {
+        if (item.id === 2) {
             messageboxstyle = styles.senderMessageContainer;
             messagetextstyle = styles.senderMessage;
-        }else {
-            messageboxstyle =styles.receiverMessageContainer;
+        } else {
+            messageboxstyle = styles.receiverMessageContainer;
             messagetextstyle = styles.receiverMessage;
         }
         return (
-            <View style={[messageboxstyle,styles.chatBox]}>
-                <View style={styles.rowText}>
-                    <Text style={messagetextstyle}>{item.text}</Text>
-                </View>
+            <View style={[messageboxstyle, styles.chatBox]}>
+                <Text style={messagetextstyle}>{item.text}</Text>
             </View>
         );
     };
@@ -58,7 +56,6 @@ class MessageFormComponent extends Component {
     renderFlatList() {
         if (this.state.messages.length > 0) {
             return (
-                <View>
                     <FlatList
                         data={this.state.messages}
                         renderItem={this.renderItem}
@@ -67,7 +64,6 @@ class MessageFormComponent extends Component {
                         onContentSizeChange={() => this.flatList.scrollToEnd({animated: false})}
                         onLayout={() => this.flatList.scrollToEnd({animated: true})}
                     />
-                </View>
             );
         }
     }
@@ -78,9 +74,7 @@ class MessageFormComponent extends Component {
 
         return (
             <View>
-                <View>
                     {this.renderFlatList()}
-                </View>
                 <KeyboardAvoidingView
                     keyboardVerticalOffset={keyboardVerticalOffset}
                     behavior={padding}
