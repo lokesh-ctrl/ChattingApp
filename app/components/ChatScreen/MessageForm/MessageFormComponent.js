@@ -3,6 +3,7 @@ import {FlatList, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpac
 import PropTypes from 'prop-types';
 import {Header, SafeAreaView} from 'react-navigation';
 import styles from '../../../Styles/styleSheet';
+import firebaseService from '../../../services/FirebaseService'
 
 
 class MessageFormComponent extends Component {
@@ -11,6 +12,19 @@ class MessageFormComponent extends Component {
         this.state = {
             messages: []
         };
+        let that = this;
+        let conversationKey = 'Users/' + this.props.senderNumber + '/' + 'Conversations/' + this.props.receiverNumber;
+        let firebaseRef = firebaseService.database().ref(conversationKey);
+        firebaseRef.on("value", function (dataSnapshot) {
+            let messages = []
+            dataSnapshot.forEach(function (child) {
+                let message = child.val()
+                console.log(message)
+                messages.push(message)
+            })
+            that.setState({messages: messages})
+            console.log(that.state.messages)
+        });
         this.handleButtonPress = () => {
             this.props.sendMessage(this.props.message, this.props.senderNumber, this.props.receiverNumber)
         }
