@@ -13,7 +13,7 @@ class MessageFormComponent extends Component {
             messages: []
         };
         let that = this;
-        let conversationKey = 'Users/' + this.props.senderNumber + '/' + 'Conversations/' + this.props.receiverNumber;
+        let conversationKey = 'Users/' + this.props.receiverNumber + '/' + 'Conversations/' + this.props.senderNumber;
         let firebaseRef = firebaseService.database().ref(conversationKey);
         firebaseRef.on("value", function (dataSnapshot) {
             let messages = []

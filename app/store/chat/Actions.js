@@ -24,16 +24,16 @@ export const sendMessage = (messageBody, senderNumber, receiverNumber) => {
         let senderReference = 'Users/' + senderNumber + '/' + 'Conversations/' + receiverNumber;
         FIREBASE_DATABASE.ref(senderReference).push(chatMessageForSender, (error) => {
             if (!error) {
-                // console.log("message sent successfully")
+                console.log("message sent successfully 1")
                 dispatch(chatMessageSuccess())
             } else {
                 console.log(error)
             }
         })
-        let receiverReference = 'Users/' + senderNumber + '/' + 'Conversations/' + receiverNumber;
+        let receiverReference = 'Users/' + receiverNumber + '/' + 'Conversations/' + senderNumber;
         FIREBASE_DATABASE.ref(receiverReference).push(chatMessageForReceiver, (error) => {
             if (!error) {
-                // console.log("message sent successfully")
+                console.log("message sent successfully 2")
                 dispatch(chatMessageSuccess())
             } else {
                 console.log(error)
