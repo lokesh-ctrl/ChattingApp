@@ -69,7 +69,6 @@ class MessageFormComponent extends Component {
     }
 
     stylesOfHeader = {
-        flex: 0.15,
         flexDirection: "row",
         justifyContent: "space-between",
         backgroundColor: "#cc504e",
@@ -84,8 +83,9 @@ class MessageFormComponent extends Component {
         return (
             <View>
                 <View style={this.stylesOfHeader}>
-                    <Text style={styles.headerText}>{this.props.receiverNumber}</Text>
-                </View> {this.renderFlatList()}
+                    <Text style={styles.headerText}>{this.props.currentChatUserName}</Text>
+                </View>
+                {this.renderFlatList()}
                 <KeyboardAvoidingView
                     keyboardVerticalOffset={keyboardVerticalOffset}
                     behavior={padding}

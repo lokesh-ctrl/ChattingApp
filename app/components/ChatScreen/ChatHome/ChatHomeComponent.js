@@ -30,7 +30,6 @@ class ChatHomeComponent extends Component {
         );
     };
     stylesOfHeader = {
-        flex: 0.15,
         flexDirection: "row",
         justifyContent: "space-between",
         backgroundColor: "#cc504e",

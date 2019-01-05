@@ -9,14 +9,15 @@ const MessageFormContainer = props =>
                           sendMessage={props.sendMessage} message={props.message}
                           receiverNumber={props.receiverNumber}
                           loadMessagesRelatedToChatUser={props.loadMessagesRelatedToChatUser}
-                          messages={props.messages}/>
+                          messages={props.messages} currentChatUserName={props.currentChatUserName}/>
 
 const mapStateToProps = state => {
     return {
         message: state.chat.message,
         senderNumber: state.user.user.phoneNumber,
         receiverNumber: state.user.currentChatUser.phoneNumber,
-        messages: state.chat.messages
+        messages: state.chat.messages,
+        currentChatUserName: state.user.currentChatUser.name
     }
 }
 
