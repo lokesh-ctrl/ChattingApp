@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
-import { Text, View} from 'react-native';
-import styles from "../Styles/styleSheet";
+import React, { Component } from 'react';
+import {Text,View} from 'react-native';
+import HeaderStyle from '../Styles/styleSheet'
 
 export default class Header extends Component{
-    render() {
+    render(){
+        let e=React.createElement;
         return(
-            <View style={styles.headerContainer}>
-                <View style={styles.leftHeaderContainer}>
-                    <Text style={styles.logoText}>{this.props.title}</Text>
-                </View>
-            </View>
-        );
+            e(View,{style:[HeaderStyle.leftHeaderContainer,HeaderStyle.headerContainer]},
+                e(Text,{style:HeaderStyle.headerText},this.props.title)
+            )
+        )
     }
 }

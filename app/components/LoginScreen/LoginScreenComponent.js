@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, TextInput, View} from 'react-native'
+import {Button, TextInput, View, ProgressBarAndroid, Image, Text, TouchableOpacity} from 'react-native'
 import PropTypes from 'prop-types'
 import DeviceInfo from 'react-native-device-info'
 import styles from "../../Styles/styleSheet";
@@ -13,15 +13,15 @@ class LoginScreenComponent extends Component {
             deviceId: null
         }
         this.handleButtonPress = () => {
-            if(this.state.phoneNumber && this.state.phoneNumber.length===10){
+            if (this.state.phoneNumber && this.state.phoneNumber.length === 10) {
                 let userInfo = {
                     phoneNumber: this.state.phoneNumber,
                     deviceId: this.state.deviceId
                 }
                 this.props.registerUser(userInfo)
             }
-            else{
-                alert("Enter Proper Phone Number");
+            else {
+                alert("Enter valid phone number");
             }
         }
         this.handleTextChange = (phoneNumber) => {
@@ -39,17 +39,28 @@ class LoginScreenComponent extends Component {
     render() {
         return (
             <View style={styles.mainContainer}>
-                <Header title={'SOLLU APP'}/>
-                <View style={styles.Box}>
-                    <TextInput onChangeText={this.handleTextChange}
-                               value={this.state.phoneNumber}
-                               placeholder="Enter your phone number"
-                               keyboardType='numeric'
-                               style={styles.inputBox}
-                               maxLength={10}
-                    />
+                <Header title={'SOLLU'}/>
+                <View style={styles.mainBox}>
+                    {/*<ProgressBarAndroid/>*/}
+                    <View style={styles.SectionStyle}>
+                        <Image source={require('../../Styles/phone-icon.jpg')}
+                               style={[styles.imageStyle]}/>
+                        <TextInput onChangeText={this.handleTextChange}
+                                   value={this.state.phoneNumber}
+                                   placeholder="Enter your phone number"
+                                   keyboardType='numeric'
+                                   style={styles.TextContainer}
+                                   maxLength={10}
+                        />
+                    </View>
                     <View>
-                        <Button style={styles.button} title={"next"} onPress={this.handleButtonPress}/>
+                        <TouchableOpacity
+                            style={[styles.button, {backgroundColor: this.state.phoneNumber ? '#cc504e' : '#f49f8e'}]}
+                            activeOpacity={.5}
+                            disabled={!this.state.phoneNumber}
+                            onPress={this.handleButtonPress}>
+                            <Text style={styles.text}>Login</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
