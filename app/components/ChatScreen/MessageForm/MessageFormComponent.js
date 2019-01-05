@@ -56,17 +56,26 @@ class MessageFormComponent extends Component {
     renderFlatList() {
         if (this.state.messages.length > 0) {
             return (
-                    <FlatList
-                        data={this.state.messages}
-                        renderItem={this.renderItem}
-                        keyExtractor={(item, index) => index.toString()}
-                        ref={ref => this.flatList = ref}
-                        onContentSizeChange={() => this.flatList.scrollToEnd({animated: false})}
-                        onLayout={() => this.flatList.scrollToEnd({animated: true})}
-                    />
+                <FlatList
+                    data={this.state.messages}
+                    renderItem={this.renderItem}
+                    keyExtractor={(item, index) => index.toString()}
+                    ref={ref => this.flatList = ref}
+                    onContentSizeChange={() => this.flatList.scrollToEnd({animated: false})}
+                    onLayout={() => this.flatList.scrollToEnd({animated: true})}
+                />
             );
         }
     }
+
+    stylesOfHeader = {
+        flex: 0.15,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        backgroundColor: "#cc504e",
+        alignItems: "center",
+        height: 50
+    };
 
     render() {
         const keyboardVerticalOffset = Platform.OS === 'ios' ? Header.HEIGHT + 20 : 0;
@@ -74,7 +83,9 @@ class MessageFormComponent extends Component {
 
         return (
             <View>
-                    {this.renderFlatList()}
+                <View style={this.stylesOfHeader}>
+                    <Text style={styles.headerText}>{this.props.receiverNumber}</Text>
+                </View> {this.renderFlatList()}
                 <KeyboardAvoidingView
                     keyboardVerticalOffset={keyboardVerticalOffset}
                     behavior={padding}

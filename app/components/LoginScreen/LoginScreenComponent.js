@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import {Button, TextInput, View, ProgressBarAndroid, Image, Text, TouchableOpacity} from 'react-native'
+import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native'
 import PropTypes from 'prop-types'
 import DeviceInfo from 'react-native-device-info'
 import styles from "../../Styles/styleSheet";
-import Header from "../Header";
+import HeaderComponent from "../Header";
 
 class LoginScreenComponent extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ class LoginScreenComponent extends Component {
     render() {
         return (
             <View style={styles.mainContainer}>
-                <Header title={'SOLLU'}/>
+                <HeaderComponent title={'SOLLU'}/>
                 <View style={styles.mainBox}>
                     {/*<ProgressBarAndroid/>*/}
                     <View style={styles.SectionStyle}>

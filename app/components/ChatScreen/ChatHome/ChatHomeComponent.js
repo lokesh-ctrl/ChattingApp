@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import styles from "../../../Styles/styleSheet";
-import {CHAT_LOAD_MESSAGES} from "../../../store/chat/ActionTypes";
 
 class ChatHomeComponent extends Component {
     constructor(props) {
         super(props);
         this.state = ({
             contacts: [],
-        })
+        });
         this.onChatPress = this.onChatPress.bind(this);
     }
 
@@ -17,23 +16,34 @@ class ChatHomeComponent extends Component {
     }
 
     onChatPress = (item) => {
-        console.log(item.phoneNumbers[0].number)
-        console.log(item.givenName)
+        console.log(item.phoneNumbers[0].number);
+        console.log(item.givenName);
         this.props.currentChatUser(item)
-    }
+    };
     renderItem = ({item}) => {
         return (
-                <TouchableOpacity style={styles.separator} onPress={() => {
-                    this.onChatPress(item)
-                }}>
-                    <Text style={styles.item}>{item.givenName}</Text>
-                </TouchableOpacity>
+            <TouchableOpacity style={styles.separator} onPress={() => {
+                this.onChatPress(item)
+            }}>
+                <Text style={styles.item}>{item.givenName}</Text>
+            </TouchableOpacity>
         );
+    };
+    stylesOfHeader = {
+        flex: 0.15,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        backgroundColor: "#cc504e",
+        alignItems: "center",
+        height: 50
     };
 
     render() {
         return (
             <View>
+                <View style={this.stylesOfHeader}>
+                    <Text style={styles.headerText}>Sollu</Text>
+                </View>
                 <FlatList
                     data={this.state.contacts["contacts"]}
                     renderItem={(item) => this.renderItem(item)}
