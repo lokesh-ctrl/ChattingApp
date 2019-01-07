@@ -1,4 +1,6 @@
 import * as types from './ActionTypes'
+import {REHYDRATE} from 'redux-persist';
+
 
 const initialState = {
     localContacts: null,
@@ -23,6 +25,13 @@ const user = (state = initialState, action) => {
             return {...state, currentChatUser: action.contact}
         case types.REMOVE_CURRENT_CHAT_CONTACT:
             return {...state, currentChatUser: null}
+        case REHYDRATE:
+            return {
+                ...state,
+                localContacts: action.payload.localContacts,
+                isRegistered: action.payload.isRegistered,
+                user: action.payload.user
+            }
         default:
             return state
     }

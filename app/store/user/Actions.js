@@ -50,7 +50,6 @@ export const chatWithThisUser = contact => {
             phoneNumber: trimmedPhoneNumber,
             name: contact.givenName
         }
-        console.log(chatContact)
         dispatch(saveCurrentChatUserInStore(chatContact))
     }
 };

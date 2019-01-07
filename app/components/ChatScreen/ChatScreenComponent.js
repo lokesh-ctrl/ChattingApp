@@ -25,6 +25,7 @@ class ChatScreenComponent extends React.Component {
     }
 
     async requestContactsPermission() {
+        console.log("in request contact permission")
         const granted = await PermissionsAndroid.request(
             PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
             {
@@ -36,7 +37,6 @@ class ChatScreenComponent extends React.Component {
     }
 
     renderBasedOnState(currentChatUser) {
-        console.log("inChatScreenComponent");
         console.log(currentChatUser);
         if (currentChatUser) {
             return (

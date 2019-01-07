@@ -16,8 +16,6 @@ class ChatHomeComponent extends Component {
     }
 
     onChatPress = (item) => {
-        console.log(item.phoneNumbers[0].number);
-        console.log(item.givenName);
         this.props.currentChatUser(item)
     };
     renderItem = ({item}) => {
