@@ -3,7 +3,7 @@ import {REHYDRATE} from 'redux-persist';
 
 
 const initialState = {
-    localContacts: null,
+    localContacts: [],
     user: null,
     isRegistered: false,
     firebaseContacts: null,
