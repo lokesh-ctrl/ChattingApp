@@ -46,9 +46,13 @@ class MessageFormComponent extends Component {
             messageboxstyle = styles.receiverMessageContainer;
             messagetextstyle = styles.receiverMessage;
         }
+        console.log(item);
+        //const time = item.createdAt.getHours() + ":" + message.item.createdAt.getMinutes();
+        // console.log(item.createdAt.getHours());
         return (
             <View style={[messageboxstyle, styles.chatBox]}>
                 <Text style={messagetextstyle}>{item.text}</Text>
+                {/*<Text>{item.t}</Text>*/}
             </View>
         );
     };
