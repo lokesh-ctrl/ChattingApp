@@ -1,5 +1,14 @@
 import React, {Component} from 'react'
-import {FlatList, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+    FlatList,
+    KeyboardAvoidingView,
+    Platform,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+    BackHandler
+} from 'react-native';
 import PropTypes from 'prop-types';
 import {Header, SafeAreaView} from 'react-navigation';
 import styles from '../../../Styles/styleSheet';
@@ -34,6 +43,12 @@ class MessageFormComponent extends Component {
 
     componentDidMount() {
         this.setState({messages: this.props.messages});
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        console.log("You clicked back button bro")
+        this.props.switchToHomePage();
     }
 
     renderItem({item}) {

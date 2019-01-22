@@ -53,7 +53,6 @@ class ChatScreenComponent extends React.Component {
     render() {
         return (
             <View>
-                <Header title={'SOLLU APP'}/>
                 {this.renderBasedOnState(this.props.currentChatUser)}
             </View>
         )

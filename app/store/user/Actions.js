@@ -55,6 +55,7 @@ export const chatWithThisUser = contact => {
 };
 export const switchToHomePage = () => {
     return (dispatch) => {
+        console.log("switch to home was triggered")
         dispatch(switchToHomePageFromChatPage())
     }
 };
