@@ -26,6 +26,10 @@ export default StyleSheet.create({
         resizeMode: 'stretch',
         alignItems: 'center',
     },
+    chatHomeimageStyle: {
+        height: 50,
+        width: 50,
+    },
     TextContainer: {
         flex:1,
         fontSize: 20,
@@ -99,21 +103,28 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: "flex-end",
     },
+    stylesOfHeader : {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        backgroundColor: "#cc504e",
+        alignItems: "center",
+        height: 50
+    },
     mainContainer: {
         flex: 1,
         backgroundColor: '#F5FCFF',
         height: 24,
     },
     item: {
-        padding: 10,
-        fontSize: 18,
+        fontSize: 20,
         height: 50,
-        flexDirection: "row",
+        paddingLeft: 20,
+        paddingTop: 15
     },
     separator: {
-        justifyContent:'space-between',
+        flexDirection: 'row',
         padding: 10,
-        height: 50,
+        height: 80,
         borderBottomColor: "rgba(92,94,94,0.5)",
         borderBottomWidth: 0.25
     },
@@ -167,10 +178,12 @@ export default StyleSheet.create({
     },
     senderMessage:{
         paddingRight:10,
-        marginLeft: 60
+        marginLeft: 60,
+        fontSize: 20,
     },
     receiverMessage:{
         paddingLeft:10,
-        marginRight: 60
+        marginRight: 60,
+        fontSize: 20
     }
 });

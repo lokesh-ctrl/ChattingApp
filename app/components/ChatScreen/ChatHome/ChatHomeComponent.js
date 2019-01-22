@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import styles from "../../../Styles/styleSheet";
 
 class ChatHomeComponent extends Component {
@@ -23,22 +23,18 @@ class ChatHomeComponent extends Component {
             <TouchableOpacity style={styles.separator} onPress={() => {
                 this.onChatPress(item)
             }}>
+                <Image source={require('../../../Styles/user.png')}
+                       style={[styles.chatHomeimageStyle]}/>
                 <Text style={styles.item}>{item.givenName}</Text>
             </TouchableOpacity>
         );
     };
-    stylesOfHeader = {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        backgroundColor: "#cc504e",
-        alignItems: "center",
-        height: 50
-    };
+
 
     render() {
         return (
             <View>
-                <View style={this.stylesOfHeader}>
+                <View style={styles.stylesOfHeader}>
                     <Text style={styles.headerText}>Sollu</Text>
                 </View>
                 <FlatList
